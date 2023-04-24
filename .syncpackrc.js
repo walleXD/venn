@@ -6,7 +6,7 @@ module.exports = {
     {
       label: "Internal configurations",
       packages: ["**"],
-      dependencies: ["eslint-config-venn", "tsconfig-venn"],
+      dependencies: ["eslint-config-venn", "tsconfig-venn", "tailwind-venn"],
       dependencyTypes: ["dev"],
       pinVersion: "workspace:*",
     },
