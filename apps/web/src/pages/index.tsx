@@ -1,10 +1,11 @@
 import { Button } from "ui-venn"
+import { PageLayout } from "~/modules/meta"
 
 export default function Web() {
   return (
-    <div className="bg-red-500">
+    <PageLayout title="homepage">
       <h1>Web</h1>
       <Button>Hello</Button>
-    </div>
+    </PageLayout>
   )
 }
