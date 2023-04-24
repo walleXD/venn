@@ -1,17 +1,37 @@
 {
+  "name": "venn",
   "private": true,
   "scripts": {
+    "bootstrap": "pnpm install && husky install",
     "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "clean": "turbo run clean --parallel && rm -rf node_modules",
+    "dev": "turbo run dev --no-cache --continue",
+    "hook:pre-commit": "lint-staged",
+    "init": "corepack enable && corepack prepare pnpm@latest --activate && pnpm run bootstrap",
+    "lint": "turbo run lint --parallel",
+    "sync": "syncpack format && syncpack list-mismatches",
+    "sync:fix": "syncpack fix-mismatches"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
+    "eslint": "^8.38.0",
+    "eslint-config-venn": "workspace:*",
+    "git-commit-msg-linter": "^4.10.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
     "prettier": "^2.5.1",
+    "syncpack": "^9.8.6",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@7.15.0",
-  "name": "venn"
+  "engines": {
+    "node": "18.16.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{tsx,jsx,css,scss}": [
+      "prettier --write"
+    ]
+  },
+  "packageManager": "pnpm@7.30.5"
 }
